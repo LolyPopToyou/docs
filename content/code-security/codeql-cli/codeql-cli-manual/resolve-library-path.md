@@ -1,6 +1,6 @@
 ---
 title: resolve library-path
-versions:
+versions: # DO NOT MANUALLY EDIT. CHANGES WILL BE OVERWRITTEN BY A 🤖
   fpt: '*'
   ghae: '*'
   ghec: '*'
@@ -46,7 +46,9 @@ query.
 **The command is deeply internal and its behavior or existence may
 change without much notice as the QL language ecosystem evolves.**
 
-## Primary options
+## Options
+
+### Primary Options
 
 #### `--[no-]find-extractors`
 
@@ -104,8 +106,8 @@ matter; it is an error if a pack name is found in two different places
 through this list.
 
 This is useful if you're temporarily developing a new version of a pack
-that also appears in the default path. On the other hand, it is *not
-recommended* to override this option in a config file; some internal
+that also appears in the default path. On the other hand, it is _not
+recommended_ to override this option in a config file; some internal
 actions will add this option on the fly, overriding any configured
 value.
 

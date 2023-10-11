@@ -80,11 +80,11 @@ To illustrate how `git filter-repo` works, we'll show you how to remove your fil
 
 1. Install the latest release of the [git filter-repo](https://github.com/newren/git-filter-repo) tool. You can install `git-filter-repo` manually or by using a package manager. For example, to install the tool with HomeBrew, use the `brew install` command.
 
-   ```
+   ```shell
    brew install git-filter-repo
    ```
 
-  For more information, see [_INSTALL.md_](https://github.com/newren/git-filter-repo/blob/main/INSTALL.md) in the `newren/git-filter-repo` repository.
+   For more information, see [_INSTALL.md_](https://github.com/newren/git-filter-repo/blob/main/INSTALL.md) in the `newren/git-filter-repo` repository.
 
 1. If you don't already have a local copy of your repository with sensitive data in its history, [clone the repository](/repositories/creating-and-managing-repositories/cloning-a-repository) to your local computer.
 
@@ -125,11 +125,11 @@ To illustrate how `git filter-repo` works, we'll show you how to remove your fil
         Completely finished after 0.64 seconds.
         ```
 
-  {% note %}
-
-  **Note:** If the file with sensitive data used to exist at any other paths (because it was moved or renamed), you must run this command on those paths, as well.
-
-  {% endnote %}
+   {% note %}
+  
+   **Note:** If the file with sensitive data used to exist at any other paths (because it was moved or renamed), you must run this command on those paths, as well.
+  
+   {% endnote %}
 
 1. Add your file with sensitive data to `.gitignore` to ensure that you don't accidentally commit it again.
 
@@ -142,7 +142,13 @@ To illustrate how `git filter-repo` works, we'll show you how to remove your fil
    ```
 
 1. Double-check that you've removed everything you wanted to from your repository's history, and that all of your branches are checked out.
-1. Once you're happy with the state of your repository, force-push your local changes to overwrite your repository on {% ifversion ghae %}{% data variables.product.product_name %}{% else %}{% data variables.location.product_location %}{% endif %}, as well as all the branches you've pushed up. A force push is required to remove sensitive data from your commit history.
+1. The `git filter-repo` tool will automatically remove your configured remotes. Use the `git remote set-url` command to restore your remotes, replacing `OWNER` and `REPO` with your repository details. For more information, see "[AUTOTITLE](/get-started/getting-started-with-git/managing-remote-repositories#adding-a-remote-repository)."
+  
+   ```shell
+   git remote add origin https://github.com/OWNER/REPOSITORY.git
+   ```
+
+1. Once you're happy with the state of your repository, and you have set the appropriate remote, force-push your local changes to overwrite your repository on {% ifversion ghae %}{% data variables.product.product_name %}{% else %}{% data variables.location.product_location %}{% endif %}, as well as all the branches you've pushed up. A force push is required to remove sensitive data from your commit history.
 
    ```shell
    $ git push origin --force --all
@@ -196,6 +202,10 @@ After using either the BFG tool or `git filter-repo` to remove the sensitive dat
    {% endnote %}
 
 ## Avoiding accidental commits in the future
+
+{% ifversion fpt or ghec or ghes %}
+Preventing contributors from making accidental commits can help you prevent sensitive information from being exposed. For more information see "[AUTOTITLE](/code-security/getting-started/best-practices-for-preventing-data-leaks-in-your-organization)."
+{% endif %}
 
 There are a few simple tricks to avoid committing things you don't want committed:
 
