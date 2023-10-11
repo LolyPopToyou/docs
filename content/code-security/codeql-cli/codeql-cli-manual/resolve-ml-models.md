@@ -1,6 +1,6 @@
 ---
 title: resolve ml-models
-versions:
+versions: # DO NOT MANUALLY EDIT. CHANGES WILL BE OVERWRITTEN BY A 🤖
   fpt: '*'
   ghae: '*'
   ghec: '*'
@@ -35,13 +35,15 @@ codeql resolve ml-models <options>... -- <query|dir|suite|pack>...
 \[Deprecated] \[Experimental] \[Deep plumbing] Determine accessible
 machine learning models.
 
-This plumbing command resolves the set of GitHub-created machine
-learning models that are available to the query specifiers passed in as
-command line arguments.
+This plumbing command is deprecated. Previously it resolved the set of
+GitHub-created machine learning models that were available to the query
+specifiers passed in as command line arguments.
 
-This command is deprecated. Use [codeql resolve extensions](/code-security/codeql-cli/codeql-cli-manual/resolve-extensions) instead.
+It now returns an empty list of machine learning models.
 
-## Primary options
+## Options
+
+### Primary Options
 
 #### `<querysuite|pack>...`
 
@@ -99,8 +101,8 @@ matter; it is an error if a pack name is found in two different places
 through this list.
 
 This is useful if you're temporarily developing a new version of a pack
-that also appears in the default path. On the other hand, it is *not
-recommended* to override this option in a config file; some internal
+that also appears in the default path. On the other hand, it is _not
+recommended_ to override this option in a config file; some internal
 actions will add this option on the fly, overriding any configured
 value.
 
